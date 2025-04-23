@@ -1,0 +1,275 @@
+@font-face {
+    font-family: custom-font;
+    src: url('../fonts/wvrbvfnafxtazrvybrms.ttf');
+  }
+  
+  @font-face {
+    font-family: 'Minecraftia';
+    src: url('../fonts/Minecraftia.ttf') format('truetype');
+  }
+  
+  * {
+    font-family: custom-font;
+  }
+  
+  :root {
+    --avatar-size: 100px;
+  }
+  
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .typing-container {
+    margin-top: 110px;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.521), 0 0 20px rgba(255, 255, 255, 0.562), 0 0 30px rgba(255, 255, 255, 0.651);
+  }
+  
+  .typewrite > .wrap {
+    border-right: 0.08em solid rgb(255, 255, 255);
+  }
+  
+  #bg-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: blur(3px);
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+  }
+  
+  .overlay span {
+    font-size: 36px;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .overlay span:hover {
+    color: #fff;
+  }
+  
+  .blurred {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+  }
+  
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .hidden-video {
+    display: none;
+  }
+  
+  .clear-window {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 750px; height: 400px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    pointer-events: auto;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0);
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 60px;
+  }
+  
+  .clear-window.show {
+    opacity: 1;
+  }
+  
+  .avatar-container {
+    position: relative;
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+  }
+  
+  .avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 60%;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgb(0, 0, 0);
+    z-index: 1;
+  }
+  
+  .discord-decoration {
+    position: absolute;
+    top: -12%;
+    left: -12%;
+    width: 123%;
+    height: 123%;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .name-tooltip {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    cursor: default;
+  }
+  
+  .tooltip-bubble {
+    position: absolute;
+    top: -30%;
+    left: 115%;
+    transform: translateX(-10px);
+    background-color: rgba(0, 0, 0, 0.281);
+    color: #ffffff;
+    font-size: 7px !important;
+    min-width: 20px;
+    min-height: 20px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.253);
+    font-family: 'Minecraftia', monospace;
+    z-index: 9999;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  .name-tooltip:hover .tooltip-bubble {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+  
+  .name {
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  }
+  
+  .role-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .role-icon svg {
+    filter: drop-shadow(0 0 2.5px #ffffff);
+    color: #ffffff;
+    cursor: default;
+    transition: color 0.3s ease;
+  }
+  
+  .role-icon:hover svg {
+    color: #555;
+  }
+  
+  .role-icons {
+    margin-top: 23px !important;
+  }
+  
+  .role-icon-wrapper {
+    display: flex;
+    margin-top: 25px;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.123);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .role-icon {
+    margin: 0 3px;
+    cursor: pointer;
+    position: relative;
+    filter: drop-shadow(0 0 2.5px #0000007c);
+    color: #00000042;
+    vertical-align: -1px;
+  }
+  
+  .role-icon svg {
+    width: 27px;
+    height: 27px;
+    fill: currentColor;
+  }
+  
+  .tooltip {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(87, 88, 87, 0.548);
+    color: rgba(0, 0, 0, 0.589);
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  
+  .role-icon:hover .tooltip {
+    opacity: 1;
+  }
+  
+  .icon-container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .icon {
+    width: 36px;
+    height: 36px;
+    fill: #ffffff;
+    filter: drop-shadow(0 0 0.2rem #ffffff);
+    vertical-align: middle;
+  }
+  
+  .socialicons {
+    position: relative;
+  }
+  
+  .social-icons-container {
+    position: absolute;
+    left: -40px;
+    bottom: -100px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+  }
+
